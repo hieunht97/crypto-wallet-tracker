@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block title %}Metamask{% endblock %} {% block
+content %}
+<h1 align="center" style="margin-top: 20px">{{ user.firstName }}'s Wallets</h1>
+
+{% if wallet_data %}
+<div>
+  <div class="crypto-title">
+    <h2>Crypto Prices:</h2>
+    <ul class="display-title">
+      <li>Bitcoin price: ${{ '{:,.2f}'.format(btc_price) }}</li>
+      <li>ETH price: ${{ '{:,.2f}'.format(eth_price) }}</li>
+    </ul>
+  </div>
+  <div class="networth-title">
+    <h2>Total Networth: ${{ '{:,.2f}'.format(total) }} USD</h2>
+  </div>
+</div>
+{% for wallet in wallet_data %}
+<div class="button-container">
+  <p class="wallet_address" style="margin: 0px">Wallet: {{ wallet.address }}</p>
+</div>
+<p style="margin-bottom: 0px">Balance:</p>
+<ul>
+  {% for row in wallet.rows %}
+  <li>
+    <div class="button-container">
+      <p style="margin: 0px">
+        {{ row.balance }} {{ row.token.upper() }} ({{ row.network }}) ~ ${{
+        '{:,.2f}'.format(row.token_value) }} USD
+      </p>
+      <button
+        class="btn-del"
+        onclick="deleteWallet(this)"
+        data-address="{{ wallet.address }}"
+        data-token="{{ row.token }}"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+<div style="margin: 0px">
+  Total value in USD: ${{ '{:,.2f}'.format(wallet.total_value) }}
+</div>
+<p style="margin-bottom: 0px; padding-bottom: 0px">
+  ------------------------------------------------------------------------
+</p>
+{% endfor %} {% else %}
+<div class="crypto-title">
+  <h2>Crypto Prices:</h2>
+  <ul>
+    <li>Bitcoin price: ${{ btc_price }}</li>
+    <li>ETH price: ${{ eth_price }}</li>
+  </ul>
+</div>
+<div>No wallet data has been added yet.</div>
+{% endif %} {% endblock %}

@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+
+/* section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+} */
+
+div ul li{
+    list-style: none;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.btn-del {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px; /* adjust as needed */
+    height: 15px; /* adjust as needed */
+    border-radius: 50%; /* make the button circular */
+    margin-left: 5px;
+    border: 0; 
+    background-color: transparent; /* set background color to white */
+    transition: all 0.2s ease-in;
+}
+
+.btn-del span:hover{
+    opacity: 0.7;
+    color: #480a0a;
+}
+
+.btn-del span {
+    font-size: 15px; /* adjust font size as needed */
+    color: #b71616;
+}
