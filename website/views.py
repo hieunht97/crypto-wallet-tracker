@@ -23,7 +23,7 @@ MAX_RETRIES = 3
 DELAY_SECONDS = 20
 
 # API key for CoinMarketCap
-api_key = "2b7c3cb0-e7f6-496e-aa1d-88359e6be374"
+api_key = "API-here"
 crypto_symbols = ["ETH", "BTC", "APE", "USDC", "BNB"]
 
 url = f'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol={",".join(crypto_symbols)}'
