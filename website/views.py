@@ -10,24 +10,19 @@ import time
 
 # Define the token mappings
 TOKEN_MAPPING = {
-    "eth": "ethereum",
-    "btc": "bitcoin",
-    "bnb": "binancecoin",
-    "ape": "apecoin",
-    "usdc": "usd-coin",
-    "was": "wasder",
-    "pepe": "pepe",
+    "ETH": "ethereum",
+    "BTC": "bitcoin",
+    "BNB": "binancecoin",
+    "APE": "apecoin",
+    "USDC": "usd-coin",
+    "WAS": "wasder",
+    "PEPE": "pepe",
+    "ARB":"arbitrum"
     # add more mappings as needed
 }
 MAX_RETRIES = 3
 DELAY_SECONDS = 20
 
-# API key for CoinMarketCap
-api_key = "API-here"
-crypto_symbols = ["ETH", "BTC", "APE", "USDC", "BNB"]
-
-url = f'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?symbol={",".join(crypto_symbols)}'
-headers = {"X-CMC_PRO_API_KEY": api_key}
 
 views = Blueprint("views", __name__)
 
@@ -43,7 +38,7 @@ def home():
         pattern_eth = re.compile("^0x[a-fA-F0-9]{40}$")
         pattern_brc20 = re.compile("^bc1[a-zA-HJ-NP-Z0-9]{8,87}$")
 
-        # check if wallet is already in the databasee
+        # check if wallet is already in the database
         existing_wallet = Metamask.query.filter_by(
             address=address, token=token, network=network, user_id=current_user.id
         ).first()
@@ -97,7 +92,7 @@ def metamask():
         total_value = 0
         row_data_list = []
         for row in rows:
-            token_name = TOKEN_MAPPING.get(row.token, row.token)
+            token_name = row.token
             token_price = Decimal(price(token_name))
             total_value += row.balance * token_price
             total_value = round(total_value, 2)
@@ -119,8 +114,8 @@ def metamask():
         # Calculate total value across all wallets
         total = sum(wallet["total_value"] for wallet in wallet_data)
 
-    bitcoin_price = price("bitcoin")
-    ethereum_price = price("ethereum")
+    bitcoin_price = price("btc")
+    ethereum_price = price("eth")
     return render_template(
         "metamask.html",
         user=current_user,
@@ -132,18 +127,25 @@ def metamask():
 
 
 def price(crypto):
+    payload={}
+    headers = {
+        'Accept': 'application/json',
+        'X-CoinAPI-Key': ''
+    }
+    url = f"https://rest.coinapi.io/v1/assets/{crypto}"
+    response = requests.request("GET", url, headers=headers, data=payload)
+
     for retry in range(MAX_RETRIES):
-        response = requests.get(
-            f"https://api.coingecko.com/api/v3/coins/{crypto}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false"
-        )
+        
+        response = requests.request("GET", url, headers=headers, data=payload)
         if response.status_code == 200:
             price_data = response.json()
             if isinstance(price_data, list):
                 # If the response is a list, access the first element and then the price data
-                crypto_price = price_data[0]["market_data"]["current_price"]["usd"]
+                crypto_price = price_data[0].get("price_usd")
             else:
                 # If the response is a dictionary, directly access the price data
-                crypto_price = price_data["market_data"]["current_price"]["usd"]
+                crypto_price = price_data.get("price_usd")
 
             # Render the price
             return crypto_price
@@ -153,7 +155,7 @@ def price(crypto):
                 f"Request failed with status code {response.status_code}. Retrying in {DELAY_SECONDS} seconds..."
             )
             time.sleep(DELAY_SECONDS)
-    raise Exception("CoinGecko API is ass")
+    raise Exception("CoinAPI request failed")
 
 
 @views.route("/edit", methods=["POST", "GET"])

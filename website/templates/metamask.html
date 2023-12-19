@@ -1,18 +1,18 @@
 {% extends "base.html" %} {% block title %}Metamask{% endblock %} {% block
 content %}
-<h1 align="center" style="margin-top: 20px">{{ user.firstName }}'s Wallets</h1>
+<h3 align="center" style="margin-top: 20px">{{ user.firstName }}'s Wallets</h3>
 
 {% if wallet_data %}
 <div>
   <div class="crypto-title">
-    <h2>Crypto Prices:</h2>
+    <h3>Crypto Prices:</h3>
     <ul class="display-title">
       <li>Bitcoin price: ${{ '{:,.2f}'.format(btc_price) }}</li>
       <li>ETH price: ${{ '{:,.2f}'.format(eth_price) }}</li>
     </ul>
   </div>
   <div class="networth-title">
-    <h2>Total Networth: ${{ '{:,.2f}'.format(total) }} USD</h2>
+    <h3>Total Networth: ${{ '{:,.2f}'.format(total) }} USD</h3>
   </div>
 </div>
 {% for wallet in wallet_data %}
@@ -32,8 +32,7 @@ content %}
         class="btn-del"
         onclick="deleteWallet(this)"
         data-address="{{ wallet.address }}"
-        data-token="{{ row.token }}"
-      >
+        data-token="{{ row.token }}">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -54,5 +53,5 @@ content %}
     <li>ETH price: ${{ eth_price }}</li>
   </ul>
 </div>
-<div>No wallet data has been added yet.</div>
+<div>It's empty here, go get your bag and fill it.</div>
 {% endif %} {% endblock %}

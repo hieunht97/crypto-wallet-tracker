@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block title %}Edit{% endblock %} {% block content
 %}
-<form method="POST">
-  <h1 align="center" style="margin-top: 20px">Edit Wallet Balance</h1>
+<form method="POST" class="form">
+  <h3 align="center" style="margin-top: 20px">Edit Wallet Balance</h3>
   <div class="submit-box">
     <div class="form-group">
       <label for="address">Wallet Address</label>
@@ -10,8 +10,7 @@
         class="form-control"
         id="address"
         name="address"
-        placeholder="Enter your wallet address"
-      />
+        placeholder="Enter your wallet address" />
     </div>
     <div class="form-group">
       <label for="balance">Wallet Balance</label>
@@ -20,34 +19,63 @@
         class="form-control"
         id="balance"
         name="balance"
-        placeholder="Enter your wallet balance"
-      />
+        placeholder="Enter your wallet balance" />
     </div>
-    <div class="form-group">
-      <label for="token">Token</label> <br />
-      <select name="token" id="token">
-        <option value="usdc">USDC</option>
-        <option value="eth">ETH</option>
-        <option value="btc">BTC</option>
-        <option value="weth">WETH</option>
-        <option value="bnb">BNB</option>
-        <option value="was">WAS</option>
-        <option value="ape">APE</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="network">Network</label> <br />
-      <select name="network" id="network">
-        <option value="ETH Mainnet">ETH Mainnet</option>
-        <option value="BRC-20">BRC-20</option>
-        <option value="Polygon">Polygon</option>
-        <option value="BNB Smart Chain">BNB Smart Chain Mainnet</option>
-        <option value="Arbitrum">Arbitrum One</option>
-        <option value="Optimism">Optimism</option>
-      </select>
+    <div class="outter-menu">
+      <div class="select-menu">
+        <div class="select-btn">
+          <span class="sBtn-text">Token</span>
+          <i class="bx bx-chevron-down"></i>
+        </div>
+        <ul class="options">
+          <li class="option">
+            <span class="option-text">BTC</span>
+          </li>
+          <li class="option">
+            <span class="option-text">ETH</span>
+          </li>
+          <li class="option">
+            <span class="option-text">ARB</span>
+          </li>
+          <li class="option">
+            <span class="option-text">BNB</span>
+          </li>
+          <li class="option">
+            <span class="option-text">SOL</span>
+          </li>
+          <li class="option">
+            <span class="option-text">USDC</span>
+          </li>
+        </ul>
+        <input type="hidden" name="token" id="selectedToken" />
+      </div>
+      <div class="select-menu-2">
+        <div class="select-btn">
+          <span class="sBtn-text">Network</span>
+          <i class="bx bx-chevron-down"></i>
+        </div>
+        <ul class="options">
+          <li class="option">
+            <span class="option-text">ETH Mainnet</span>
+          </li>
+          <li class="option">
+            <span class="option-text">Arbitrum</span>
+          </li>
+          <li class="option">
+            <span class="option-text">Polygon</span>
+          </li>
+          <li class="option">
+            <span class="option-text">BRC-20</span>
+          </li>
+          <li class="option">
+            <span class="option-text">BNB Smart Chain</span>
+          </li>
+        </ul>
+        <input type="hidden" name="network" id="selectedNetwork" />
+      </div>
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Edit</button>
+    <button type="submit" class="btn btn-primary center-button">Edit</button>
   </div>
 </form>
 {% endblock %}

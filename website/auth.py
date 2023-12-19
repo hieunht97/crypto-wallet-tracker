@@ -25,6 +25,7 @@ def login():
             flash('Email does not exist.', category='error')
         
     return render_template("login.html", user=current_user)
+    
 
 @auth.route('/logout')
 @login_required
@@ -56,7 +57,7 @@ def signup():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            new_user = User(email=email, firstName=firstName, lastName=lastName, password=generate_password_hash(password1, method='sha256'))
+            new_user = User(email=email, firstName=firstName, lastName=lastName, password=generate_password_hash(password1))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)

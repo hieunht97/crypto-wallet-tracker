@@ -5,14 +5,6 @@
     box-sizing: border-box;
 }
 
-
-/* section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-} */
-
 div ul li{
     list-style: none;
 }
@@ -43,4 +35,170 @@ div ul li{
 .btn-del span {
     font-size: 15px; /* adjust font size as needed */
     color: #b71616;
+}
+
+.signin-box, .submit-box, .sign-box {
+    width: 400px;
+    height: 600px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    display: block;
+    margin: 20px auto;
+}   
+
+.submit-box{
+    height: 300px;
+}
+
+.signin-box {
+    height: 350px;
+}
+
+
+body {
+    overflow: hidden;
+    background-color: c9d6ff;
+    background: linear-gradient(to right, #e2e2e2,#c9d6ff);
+}
+
+
+.btn-primary {
+    width: 320px;
+    height: 35px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background-color: #49c1a2;
+    color: white;
+}
+
+.btn-primary:hover{
+    background-color: #69c3ac;
+    border: 1px solid transparent;
+}
+
+.center-button {
+    display: block;
+    margin: 0 auto;
+}
+
+.login-btn{
+    margin-top: 30px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border: 1px solid ;
+    border-radius: 6px;
+    outline: none;
+}
+
+
+#wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.drop-down {
+    display: flex;
+    gap: 10px;
+}
+
+.drop-down-item {
+    justify-content: center;
+    margin: 0;
+}   
+
+.container input{
+    background: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.container label, select{
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.select-menu, .select-menu-2 {
+    width: 190px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.select-menu .select-btn, .select-menu-2 .select-btn{
+    display: flex;
+    height: 35px;
+    width: 170px;
+    background: #fff;
+    padding: 20px;
+    font-size:12px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-between;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    margin: auto;
+}
+
+.select-menu .options, .select-menu-2 .options{
+   position: relative;
+   padding: 10px;
+   width: 170px;
+   margin-top: 5px;
+   border-radius: 8px;
+   background: #fff; 
+   box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+   display: none;
+   margin-top: 10px;
+   margin-left: 10px;
+}
+
+.select-menu.active .options, .select-menu-2.active .options{
+    display: block;
+    position: absolute;
+}
+
+.options .option {
+    display: flex;
+    height: 35px;
+    cursor:pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fff;
+}
+
+.options .option:hover{
+    background: #f2f2f2;
+}
+
+.option .option-text{
+    font-size: 12px;
+    color: #333;
+
+}
+.select-menu.active .select-btn i, .select-menu-2.active .select-btn i {
+    transform: rotate(-180deg);
+    transition: 0.3s;
+}
+
+.outter-menu {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    position: relative;
+}
+
+.nav-item {
+    font-size: 14px;
 }
